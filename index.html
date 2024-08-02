@@ -55,7 +55,7 @@
     const img = document.createElement('img');
     img.src = `data:image/png;base64,${item_img}`;
     img.className = "img-fluid";
-    img.style = "height: 650px; align-items: center; justify-content: center; display:flex;";
+    img.style = "height: 650px; align-items: center; justify-content: center; display:flex; visibility: hidden; width: 80%;";
     WordCloud.appendChild(img);
 
     const HotKeyword = document.getElementById('HotKeyword');
@@ -63,6 +63,7 @@
       const span = document.createElement('span');
       const button = document.createElement('button');
       span.title = "目前有"+item_HotKeyword[i][1] + '個人覺得'+item_HotKeyword[i][0];
+      span.style = "transform: scale(1.5);"
       span.className = "d-inline-block px-5";
       span.setAttribute("data-bs-toggle", "tooltip");
       span.setAttribute("data-bs-placement", "top");
