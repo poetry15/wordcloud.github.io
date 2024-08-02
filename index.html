@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <div class="container fs-1" style="transform: scale(2.5); transform-origin:left top; max-width:100vh">
+  <div class="container fs-1" style="transform: scale(2.5); transform-origin:left top; max-width:100vw">
     <div class="row-md-1 d-flex" style="min-height: 5vh;">
       <h1 class="d-flex align-items-end mt-3">目前的文字雲</h1>
     </div>
@@ -54,8 +54,8 @@
     const WordCloud = document.getElementById('wordcloud');
     const img = document.createElement('img');
     img.src = `data:image/png;base64,${item_img}`;
-    img.className = "img-fluid";
-    img.style = "height: 650px; align-items: center; justify-content: center; display:flex;";
+    img.className = "img-fluid mx-auto";
+    img.style = "height: 650px;";
     WordCloud.appendChild(img);
 
     const HotKeyword = document.getElementById('HotKeyword');
