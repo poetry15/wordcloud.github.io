@@ -29,6 +29,9 @@
   .container {
     display: none;
   }
+  .tooltip-inner {
+    font-size: 1.5rem; /* 調整這裡來改變字體大小 */
+  }
 </style>
 <script>
   async function fetchData() {
@@ -55,7 +58,7 @@
     const img = document.createElement('img');
     img.src = `data:image/png;base64,${item_img}`;
     img.className = "img-fluid";
-    img.style = "height: 650px; align-items: center; justify-content: center; display:flex; width: 80%;";
+    img.style = "height: 600px; align-items: center; justify-content: center; display:flex;";
     WordCloud.appendChild(img);
 
     const HotKeyword = document.getElementById('HotKeyword');
@@ -63,7 +66,7 @@
       const span = document.createElement('span');
       const button = document.createElement('button');
       span.title = "目前有"+item_HotKeyword[i][1] + '個人覺得'+item_HotKeyword[i][0];
-      span.className = "d-inline-block px-5 fs-1";
+      span.className = "d-inline-block px-5";
       span.setAttribute("data-bs-toggle", "tooltip");
       span.setAttribute("data-bs-placement", "top");
       button.className = "btn btn-primary";
