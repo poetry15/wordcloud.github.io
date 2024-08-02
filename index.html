@@ -55,7 +55,7 @@
     const img = document.createElement('img');
     img.src = `data:image/png;base64,${item_img}`;
     img.className = "img-fluid";
-    img.style = "height: 400px; align-items: center; justify-content: center; display:flex;";
+    img.style = "height: 650px; align-items: center; justify-content: center; display:flex;";
     WordCloud.appendChild(img);
 
     const HotKeyword = document.getElementById('HotKeyword');
@@ -80,10 +80,10 @@
       return new bootstrap.Tooltip(tooltipTriggerEl)
     });
     tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-      tooltipTriggerEl.addEventListener('inserted.bs.tooltip', function () {
+      tooltipTriggerEl.addEventListener('shown.bs.tooltip', function () {
         const tooltipInner = document.querySelector('.tooltip-inner');
         if (tooltipInner) {
-          tooltipInner.style.fontSize = '1.5rem'; // 調整這裡來改變字體大小
+          tooltipInner.style = "transform: scale(3);";
         }
       });
     });
