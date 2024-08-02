@@ -15,6 +15,7 @@
     </div>
     <div class="row-md-7 d-flex justify-content-center">
       <div id="wordcloud">
+        <img id="wordcloudImage" class="img-fluid mx-auto" style="height: 650px;" />
       </div>
     </div>
     <div class="row-md-4 my-5">
@@ -65,15 +66,13 @@
   }
 
   async function initializePage() {
+    console.log("YES");
     const data = await fetchData();
     item_img = JSON.parse(data.WordcloudImage).image.$binary.base64;
     item_HotKeyword = JSON.parse(data.HotKeyword).HotKeywords;
     const WordCloud = document.getElementById('wordcloud');
-    const img = document.createElement('img');
+    const img = document.getElementById('wordcloudImage');
     img.src = `data:image/png;base64,${item_img}`;
-    img.className = "img-fluid mx-auto";
-    img.style = "height: 650px;";
-    WordCloud.appendChild(img);
 
     const HotKeyword = document.getElementById('HotKeyword');
     const span = document.querySelectorAll('span')
@@ -86,14 +85,14 @@
     tooltipTriggerList.forEach((tooltipTriggerEl) => {
       var tooltip = new bootstrap.Tooltip(tooltipTriggerEl);
       tooltip.show();
-      console.log(tooltip);
       tooltip.hide();
       return tooltip;
     });
+    document.querySelector('.container').style.display = 'block';
   }
 
-  document.addEventListener('DOMContentLoaded', async () => {
-    await initializePage();
-    document.querySelector('.container').style.display = 'block';
+  document.addEventListener('DOMContentLoaded', () => {
+    initializePage();
+    setInterval(initializePage, 10000);
   });
 </script>
