@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <div class="container fs-1" style="transform: scale(2.5); transform-origin:left top">
+  <div class="container fs-1" style="transform: scale(2.5); transform-origin:left top; max-width:100vh">
     <div class="row-md-1 d-flex" style="min-height: 5vh;">
       <h1 class="d-flex align-items-end mt-3">目前的文字雲</h1>
     </div>
@@ -46,7 +46,7 @@
       return [];
     }
   }
-  
+
   async function initializePage() {
     const data = await fetchData();
     item_img = JSON.parse(data.WordcloudImage).image.$binary.base64;
@@ -62,7 +62,7 @@
     for (let i = 0; i < item_HotKeyword.length; i++) {
       const span = document.createElement('span');
       const button = document.createElement('button');
-      span.title = "目前有"+item_HotKeyword[i][1] + '個人覺得'+item_HotKeyword[i][0];
+      span.title = "目前有" + item_HotKeyword[i][1] + '個人覺得' + item_HotKeyword[i][0];
       span.className = "d-inline-block px-5";
       span.setAttribute("data-bs-toggle", "tooltip");
       span.setAttribute("data-bs-placement", "top");
@@ -76,20 +76,22 @@
       HotKeyword.appendChild(span);
     }
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-      return new bootstrap.Tooltip(tooltipTriggerEl)
-    });
-    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-      tooltipTriggerEl.addEventListener('shown.bs.tooltip', function () {
-        const tooltipInner = document.querySelector('.tooltip-inner');
-        if (tooltipInner) {
-          tooltipInner.style = "transform: scale(3);";
-        }
+    tooltipTriggerList.forEach((tooltipTriggerEl) => {
+      var tooltip = new bootstrap.Tooltip(tooltipTriggerEl);
+      tooltip.show();
+      const tooltipInner = document.querySelectorAll('.tooltip-inner');
+      tooltipInner.forEach((element) => {
+        element.style.transform = 'scale(3)';
       });
+      tooltip.hide();
+      return tooltip;
     });
   }
+  
   document.addEventListener('DOMContentLoaded', async () => {
     await initializePage();
     document.querySelector('.container').style.display = 'block';
   });
+
+
 </script>
