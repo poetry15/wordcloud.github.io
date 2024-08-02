@@ -29,9 +29,6 @@
   .container {
     display: none;
   }
-  .tooltip-inner {
-    font-size: 120%; /* 調整這裡來改變字體大小 */
-  }
 </style>
 <script>
   async function fetchData() {
@@ -58,7 +55,7 @@
     const img = document.createElement('img');
     img.src = `data:image/png;base64,${item_img}`;
     img.className = "img-fluid";
-    img.style = "height: 550px; align-items: center; justify-content: center; display:flex;";
+    img.style = "height: 400px; align-items: center; justify-content: center; display:flex;";
     WordCloud.appendChild(img);
 
     const HotKeyword = document.getElementById('HotKeyword');
@@ -81,7 +78,15 @@
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
       return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
+    });
+    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+      tooltipTriggerEl.addEventListener('inserted.bs.tooltip', function () {
+        const tooltipInner = document.querySelector('.tooltip-inner');
+        if (tooltipInner) {
+          tooltipInner.style.fontSize = '1.5rem'; // 調整這裡來改變字體大小
+        }
+      });
+    });
   }
   document.addEventListener('DOMContentLoaded', async () => {
     await initializePage();
