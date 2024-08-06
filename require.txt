@@ -1,5 +1,0 @@
-flask
-pymongo
-bson.json_util
-flask_cors
-linebot.v3
