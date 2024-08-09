@@ -16,20 +16,20 @@
     </div>
     <div class="row-md-7 d-flex justify-content-center">
       <div id="wordcloud">
-        <img id="wordcloudImage" class="img-fluid mx-auto" style="object-fit: contain;"/> 
+        <img src = "wordcloud.png" id="wordcloudImage" class="img-fluid mx-auto" style="object-fit: contain;"/> 
       </div>
     </div>
     <div class="row-md-4 my-3">
       <h1 class="my-3">熱門關鍵詞</h1>
       <div id="HotKeyword">
-        <span class="d-inline-block px-4" data-bs-toggle="tooltip" data-bs-placement="top">
-          <button class="btn btn-primary" name="btn" type="button" style="transform: scale(1.5);" disabled></button>
+        <span class="d-inline-block px-4" data-bs-toggle="tooltip" data-bs-placement="top" title="目前有1個人覺得">
+          <button class="btn btn-primary" name="btn" type="button" style="transform: scale(1.5);" disabled>快樂</button>
         </span>
-        <span class="d-inline-block px-4" data-bs-toggle="tooltip" data-bs-placement="top">
-          <button class="btn btn-primary" name="btn" type="button" style="transform: scale(1.5);" disabled></button>
+        <span class="d-inline-block px-4" data-bs-toggle="tooltip" data-bs-placement="top" title="目前有1個人覺得">
+          <button class="btn btn-primary" name="btn" type="button" style="transform: scale(1.5);" disabled>煩悶</button>
         </span>
-        <span class="d-inline-block px-4" data-bs-toggle="tooltip" data-bs-placement="top">
-          <button class="btn btn-primary" name="btn" type="button" style="transform: scale(1.5);" disabled></button>
+        <span class="d-inline-block px-4" data-bs-toggle="tooltip" data-bs-placement="top" title="目前有1個人覺得">
+          <button class="btn btn-primary" name="btn" type="button" style="transform: scale(1.5);" disabled>生氣</button>
         </span>
       </div>
     </div>
@@ -38,7 +38,7 @@
 
 <style>
   .container {
-    display: none;
+    display: block;
   }
   .tooltip-inner {
     transform: scale(1.5);
@@ -93,13 +93,20 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    tooltipTriggerList.forEach((tooltipTriggerEl) => {
+      var tooltip = new bootstrap.Tooltip(tooltipTriggerEl);
+      tooltip.show();
+      tooltip.hide();
+      return tooltip;
+    });
     liff.init({ liffId: "2005965896-E06Nn4Vv" }).then(() => {
       if (!liff.isInClient()) {
-        refreshInterval = setInterval(fetchData, 60000);
-        window.close();
+        //refreshInterval = setInterval(fetchData, 60000);
+        //window.close();
       }
       else {
-        initializePage();
+        //initializePage();
       }
     }).catch((err) => {
       console.error('LIFF initialization failed', err);
